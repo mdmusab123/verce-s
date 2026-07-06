@@ -1,4 +1,5 @@
 export default async function handler(req, res) {
+  const url = req.url;
   const targetHost = req.headers['x-target-url'] || 'https://generativelanguage.googleapis.com';
   const targetUrl = `${targetHost.replace(/\/$/, '')}${url}`;
 
