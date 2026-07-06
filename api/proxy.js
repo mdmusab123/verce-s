@@ -1,10 +1,10 @@
 export default async function handler(req, res) {
-  const url = req.url;
-  const targetUrl = `https://generativelanguage.googleapis.com${url}`;
+  const targetHost = req.headers['x-target-url'] || 'https://generativelanguage.googleapis.com';
+  const targetUrl = `${targetHost.replace(/\/$/, '')}${url}`;
 
   // Copy only required headers and ignore all forwarding/IP headers to bypass region locks
   const headers = {};
-  const allowedHeaders = ['content-type', 'accept', 'x-goog-api-key', 'x-goog-api-client', 'authorization'];
+  const allowedHeaders = ['content-type', 'accept', 'x-goog-api-key', 'x-goog-api-client', 'authorization', 'x-target-url'];
   for (const key of allowedHeaders) {
     if (req.headers[key]) {
       headers[key] = req.headers[key];
