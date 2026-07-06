@@ -1,9 +1,6 @@
 {
   "version": 2,
   "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "https://generativelanguage.googleapis.com/$1"
-    }
+    { "source": "/(.*)", "destination": "/api/proxy" }
   ]
 }
